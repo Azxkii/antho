@@ -2,13 +2,13 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --rouge:   #C0201F;
-  --noir:    #1A1A1A;
-  --gris:    #5C5C5C;
-  --fond:    #F5F5F3;
-  --blanc:   #FFFFFF;
-  --radius:  12px;
-  --shadow:  0 4px 24px rgba(0,0,0,0.08);
+  --rouge:  #C0201F;
+  --noir:   #1A1A1A;
+  --gris:   #5C5C5C;
+  --fond:   #F5F5F3;
+  --blanc:  #FFFFFF;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
 html { scroll-behavior: smooth; }
@@ -30,6 +30,7 @@ body {
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
   transition: all .3s ease;
 }
+#navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.13); }
 .nav-logo img { height: 44px; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a { text-decoration: none; color: var(--noir); font-weight: 500; font-size: .9rem; transition: color .2s; }
@@ -61,7 +62,7 @@ body {
   display: inline-block; background: var(--rouge); color: #fff;
   padding: .8rem 2rem; border-radius: 8px; text-decoration: none;
   font-weight: 600; font-size: .95rem; border: 2px solid var(--rouge);
-  transition: all .25s ease; cursor: pointer;
+  transition: all .25s ease; cursor: pointer; font-family: 'Inter', sans-serif;
 }
 .btn-primary:hover { background: #a01919; border-color: #a01919; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(192,32,31,0.35); }
 
@@ -75,18 +76,28 @@ body {
 
 .btn-full { width: 100%; text-align: center; }
 
+.btn-outline-light {
+  display: inline-block; background: transparent; color: #aaa;
+  padding: .7rem 1.8rem; border-radius: 8px; border: 1.5px solid #555;
+  font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: border-color .2s, color .2s; text-decoration: none;
+}
+.btn-outline-light:hover { border-color: #fff; color: #fff; }
+
 .scroll-down {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   color: rgba(255,255,255,0.7); font-size: 1.4rem; z-index: 2;
-  animation: bounce 2s infinite;
-  text-decoration: none;
+  animation: bounce 2s infinite; text-decoration: none;
 }
-@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
 
 /* ===== SECTIONS COMMUNES ===== */
 section { padding: 100px 0; }
 .bg-white { background: var(--blanc); }
-.bg-dark { background: var(--noir); }
+.bg-dark  { background: var(--noir); }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
 h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; text-align: center; margin-bottom: .6rem; }
 h2::after { content: ''; display: block; width: 50px; height: 4px; background: var(--rouge); margin: .6rem auto 0; border-radius: 2px; }
@@ -116,17 +127,31 @@ h2::after { content: ''; display: block; width: 50px; height: 4px; background: v
 }
 .gallery-item:hover .gallery-overlay { opacity: 1; }
 
-/* LIGHTBOX */
+/* ===== LIGHTBOX ===== */
 .lightbox {
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92);
   z-index: 9999; align-items: center; justify-content: center;
 }
 .lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 85vh; border-radius: var(--radius); box-shadow: 0 0 40px rgba(0,0,0,0.5); }
-#lightbox-close {
-  position: absolute; top: 1.5rem; right: 2rem; color: #fff;
-  font-size: 2.5rem; cursor: pointer; line-height: 1;
+.lightbox img {
+  max-width: 88vw; max-height: 85vh;
+  border-radius: var(--radius); box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  transition: opacity .15s ease;
 }
+#lightbox-close {
+  position: absolute; top: 1.5rem; right: 2rem;
+  color: #fff; font-size: 2.5rem; cursor: pointer; line-height: 1;
+  transition: color .2s;
+}
+#lightbox-close:hover { color: var(--rouge); }
+#lightbox-prev, #lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  color: rgba(255,255,255,0.8); font-size: 2rem; cursor: pointer;
+  padding: 1rem; user-select: none; transition: color .2s;
+}
+#lightbox-prev { left: 1rem; }
+#lightbox-next { right: 1rem; }
+#lightbox-prev:hover, #lightbox-next:hover { color: var(--rouge); }
 
 /* ===== AVANTAGES ===== */
 .avantages-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; max-width: 780px; margin-inline: auto; }
@@ -142,21 +167,54 @@ h2::after { content: ''; display: block; width: 50px; height: 4px; background: v
 /* ===== CONTACT / RDV ===== */
 .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
 .booking-block, .form-block { background: #2a2a2a; border-radius: var(--radius); padding: 2rem; }
-.booking-block h3, .form-block h3 { color: #fff; font-size: 1.1rem; margin-bottom: 1.5rem; }
+.booking-block h3, .form-block h3 { color: #fff; font-size: 1.1rem; margin-bottom: 1rem; }
 .booking-block h3 i, .form-block h3 i { color: var(--rouge); margin-right: .5rem; }
+.booking-sub { color: #aaa; font-size: .9rem; margin-bottom: 1.5rem; line-height: 1.5; }
+#gcal-btn-container { display: flex; justify-content: flex-start; }
 
+/* FORM LAYOUT */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-group { margin-bottom: 1rem; }
+.form-group label {
+  display: block; color: #ccc; font-size: .78rem;
+  font-weight: 600; margin-bottom: .4rem;
+  text-transform: uppercase; letter-spacing: .04em;
+}
 .form-group input, .form-group select, .form-group textarea {
   width: 100%; padding: .85rem 1rem; border-radius: 8px;
-  border: 1.5px solid #444; background: #1a1a1a; color: #fff;
+  border: 1.5px solid #3a3a3a; background: #111; color: #fff;
   font-family: 'Inter', sans-serif; font-size: .95rem; outline: none;
-  transition: border-color .2s;
+  transition: border-color .2s, box-shadow .2s;
 }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--rouge); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--rouge);
+  box-shadow: 0 0 0 3px rgba(192,32,31,0.15);
+}
 .form-group select option { background: #1a1a1a; }
-.form-feedback { margin-top: 1rem; text-align: center; font-size: .9rem; font-weight: 600; min-height: 1.4rem; }
-.form-feedback.success { color: #4ade80; }
-.form-feedback.error { color: #f87171; }
+.form-group input.input-error { border-color: #f87171; }
+.inline-error { color: #f87171; font-size: .8rem; margin-top: .3rem; display: block; }
+.form-legal { color: #555; font-size: .78rem; text-align: center; margin-top: .8rem; }
+
+/* FORM STATES */
+.form-state {
+  display: none; flex-direction: column; align-items: center;
+  text-align: center; padding: 2rem 1rem; gap: 1rem;
+}
+.state-icon { font-size: 3rem; }
+.success-icon { color: #4ade80; }
+.error-icon   { color: #f87171; }
+.form-state h4 { color: #fff; font-size: 1.2rem; }
+.form-state p  { color: #aaa; font-size: .95rem; }
+
+/* CONTACT DIRECT */
+.contact-direct {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; margin-top: 3rem; flex-wrap: wrap;
+  color: #777; font-size: .9rem;
+}
+.contact-phone { color: #fff; font-weight: 700; font-size: 1.1rem; text-decoration: none; }
+.contact-phone:hover { color: var(--rouge); }
+.contact-hours { color: #555; font-size: .85rem; }
 
 /* ===== FOOTER ===== */
 footer { background: #111; padding: 2.5rem 5%; }
@@ -173,10 +231,17 @@ footer p { color: #666; font-size: .85rem; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: #fff; padding: 1.5rem; box-shadow: var(--shadow); }
+  .nav-links {
+    display: none; flex-direction: column;
+    position: absolute; top: 70px; left: 0; right: 0;
+    background: #fff; padding: 1.5rem; box-shadow: var(--shadow);
+  }
   .nav-links.open { display: flex; }
   .burger { display: block; }
   .gallery { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; text-align: center; }
   .footer-links { justify-content: center; }
+  .form-row { grid-template-columns: 1fr; }
+  #lightbox-prev { left: .3rem; }
+  #lightbox-next { right: .3rem; }
 }

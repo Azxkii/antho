@@ -4,14 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ADA SERVICES – Plomberie · Carrelage · Salles de bains</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <!-- AOS Animate On Scroll -->
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
-  <!-- Styles -->
+  <link rel="stylesheet" href="https://calendar.google.com/calendar/scheduling-button-script.css">
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -21,27 +17,11 @@
     <a href="#hero" class="nav-logo">
       <img src="assets/logo.jpeg" alt="ADA SERVICES Logo"/>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="#expertises">Expertises</a></li>
       <li><a href="#realisations">Réalisations</a></li>
       <li><a href="#avantages">Pourquoi nous</a></li>
-      <li><a href="#rdv" class=""><!-- Google Calendar Appointment Scheduling begin -->
-<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-<script>
-(function() {
-  var target = document.currentScript;
-  window.addEventListener('load', function() {
-    calendar.schedulingButton.load({
-      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2PdhwFDE0hjYLFu4LWB5YhiWlIo0MMzF8d61rpyI8p5_QiFGagMYgAI5Si8rBYXlq87rb78GcG?gv=true',
-      color: '#039BE5',
-      label: 'Réserver un rendez-vous',
-      target,
-    });
-  });
-})();
-</script>
-<!-- end Google Calendar Appointment Scheduling --></a></li>
+      <li><a href="#rdv" class="nav-cta">Prendre RDV</a></li>
     </ul>
     <button class="burger" id="burger" aria-label="Menu">
       <i class="fas fa-bars"></i>
@@ -73,25 +53,21 @@
         Un seul prestataire, trois métiers maîtrisés.
       </p>
       <div class="cards-grid">
-
         <div class="card" data-aos="fade-up" data-aos-delay="0">
           <div class="card-icon"><i class="fas fa-wrench"></i></div>
           <h3>Plomberie</h3>
           <p>Installation, remplacement et dépannage. Robinetterie, douches, baignoires, sanitaires — des interventions propres et durables.</p>
         </div>
-
         <div class="card" data-aos="fade-up" data-aos-delay="150">
           <div class="card-icon"><i class="fas fa-border-all"></i></div>
           <h3>Carrelage</h3>
           <p>Pose de faïence, grès cérame, zellige ou pierre naturelle. Des joints parfaits, des surfaces impeccables, pour chaque style.</p>
         </div>
-
         <div class="card" data-aos="fade-up" data-aos-delay="300">
           <div class="card-icon"><i class="fas fa-bath"></i></div>
           <h3>Salle de bains clé en main</h3>
           <p>Conception, démolition, plomberie, carrelage, équipements : on gère tout. Vous entrez dans votre nouvelle salle de bains — c'est aussi simple que ça.</p>
         </div>
-
       </div>
     </div>
   </section>
@@ -120,8 +96,12 @@
         <div class="gallery-item"><img src="assets/gallery/photo13.jpeg" alt="Réalisation 13"/><div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
       </div>
     </div>
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox"><img id="lightbox-img" src="" alt=""/><span id="lightbox-close">&times;</span></div>
+    <div id="lightbox" class="lightbox">
+      <img id="lightbox-img" src="" alt=""/>
+      <span id="lightbox-close">&times;</span>
+      <span id="lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+      <span id="lightbox-next"><i class="fas fa-chevron-right"></i></span>
+    </div>
   </section>
 
   <!-- ===== AVANTAGES ===== -->
@@ -129,7 +109,6 @@
     <div class="container">
       <h2 data-aos="fade-up">Pourquoi choisir ADA SERVICES ?</h2>
       <div class="avantages-grid">
-
         <div class="avantage-item" data-aos="fade-right" data-aos-delay="0">
           <div class="avantage-icon"><i class="fas fa-user-check"></i></div>
           <div>
@@ -137,7 +116,6 @@
             <p>Plus besoin de coordonner plusieurs corps de métier. Plombier et carreleur, c'est le même. Votre projet avance sans friction, sans mauvaise surprise.</p>
           </div>
         </div>
-
         <div class="avantage-item" data-aos="fade-right" data-aos-delay="150">
           <div class="avantage-icon"><i class="fas fa-star"></i></div>
           <div>
@@ -145,7 +123,6 @@
             <p>Joints droits, poses millimétriques, silicones propres. On ne livre pas un chantier "acceptable" — on livre un chantier dont vous êtes fier.</p>
           </div>
         </div>
-
         <div class="avantage-item" data-aos="fade-right" data-aos-delay="300">
           <div class="avantage-icon"><i class="fas fa-file-invoice"></i></div>
           <div>
@@ -153,7 +130,6 @@
             <p>Prix transparent dès le départ. Planning tenu. Vous savez quand ça commence, vous savez quand c'est fini.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -169,60 +145,76 @@
 
       <div class="contact-wrapper" data-aos="fade-up" data-aos-delay="200">
 
-        <!-- Google Calendar Booking iframe -->
+        <!-- Bloc Google Calendar -->
         <div class="booking-block">
           <h3><i class="fas fa-calendar-check"></i> Réserver un créneau</h3>
-          <!-- Google Calendar Appointment Scheduling begin -->
-<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-<script>
-(function() {
-  var target = document.currentScript;
-  window.addEventListener('load', function() {
-    calendar.schedulingButton.load({
-      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2PdhwFDE0hjYLFu4LWB5YhiWlIo0MMzF8d61rpyI8p5_QiFGagMYgAI5Si8rBYXlq87rb78GcG?gv=true',
-      color: '#039BE5',
-      label: 'Réserver un rendez-vous',
-      target,
-    });
-  });
-})();
-</script>
-<!-- end Google Calendar Appointment Scheduling -->        </div>
+          <p class="booking-sub">Choisissez un horaire, on vous rappelle à l'heure convenue.</p>
+          <div id="gcal-btn-container"></div>
+        </div>
 
         <!-- Formulaire EmailJS -->
         <div class="form-block">
           <h3><i class="fas fa-paper-plane"></i> Envoyez votre demande</h3>
+
+          <!-- États du formulaire -->
+          <div id="form-success" class="form-state" style="display:none;">
+            <div class="state-icon success-icon"><i class="fas fa-check-circle"></i></div>
+            <h4>Message envoyé !</h4>
+            <p>Nous vous répondons sous 24h à <strong id="confirm-email"></strong>.</p>
+            <button class="btn-primary" onclick="resetForm()">Envoyer une autre demande</button>
+          </div>
+
+          <div id="form-error" class="form-state" style="display:none;">
+            <div class="state-icon error-icon"><i class="fas fa-exclamation-circle"></i></div>
+            <h4>Erreur d'envoi</h4>
+            <p>Veuillez réessayer ou nous contacter directement.</p>
+            <a href="mailto:adaservices.agenda@gmail.com" class="btn-primary">Envoyer un email</a>
+            <button class="btn-outline-light" onclick="resetForm()" style="margin-top:.8rem;">Réessayer</button>
+          </div>
+
           <form id="contact-form">
-            <div class="form-group">
-              <input type="text" id="name" name="from_name" placeholder="Prénom & Nom" required/>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Prénom & Nom *</label>
+                <input type="text" id="name" name="from_name" placeholder="Jean Dupont" required/>
+              </div>
+              <div class="form-group">
+                <label for="phone">Téléphone *</label>
+                <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" required/>
+              </div>
             </div>
             <div class="form-group">
-              <input type="tel" id="phone" name="phone" placeholder="Téléphone" required/>
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="user_email" placeholder="jean@exemple.fr" required/>
             </div>
             <div class="form-group">
-              <input type="email" id="email" name="user_email" placeholder="Email" required/>
-            </div>
-            <div class="form-group">
-              <select name="service" required>
-                <option value="" disabled selected>Type de prestation</option>
-                <option value="plomberie">Plomberie</option>
-                <option value="carrelage">Carrelage</option>
-                <option value="cle-en-main">Salle de bains clé en main</option>
-                <option value="autre">Autre</option>
+              <label for="service">Type de prestation *</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Choisissez une prestation</option>
+                <option value="Plomberie">🔧 Plomberie</option>
+                <option value="Carrelage">🪟 Carrelage</option>
+                <option value="Salle de bains clé en main">🛁 Salle de bains clé en main</option>
+                <option value="Autre">📋 Autre</option>
               </select>
             </div>
             <div class="form-group">
-              <textarea name="message" placeholder="Décrivez rapidement votre projet (optionnel)" rows="4"></textarea>
+              <label for="message">Votre projet (optionnel)</label>
+              <textarea id="message" name="message" placeholder="Ex : salle de bains 6m², douche à l'italienne, carrelage zellige…" rows="4"></textarea>
             </div>
             <button type="submit" class="btn-primary btn-full" id="submit-btn">
-              <span id="btn-text">Envoyer ma demande</span>
-              <span id="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+              <span id="btn-text"><i class="fas fa-paper-plane"></i> &nbsp;Envoyer ma demande</span>
+              <span id="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i> &nbsp;Envoi en cours…</span>
             </button>
-            <div id="form-feedback" class="form-feedback"></div>
+            <p class="form-legal">* Champs obligatoires. Vos données ne sont pas partagées.</p>
           </form>
         </div>
 
+      </div>
+
+      <div class="contact-direct" data-aos="fade-up" data-aos-delay="300">
+        <span><i class="fas fa-phone"></i> Vous préférez appeler ?</span>
+        <a href="tel:+33600000000" class="contact-phone">06 00 00 00 00</a>
+        <span class="contact-hours">Lun – Ven &nbsp;|&nbsp; 8h – 18h</span>
       </div>
     </div>
   </section>
@@ -241,11 +233,9 @@
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
-  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <!-- App -->
+  <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
   <script src="script.js"></script>
 </body>
 </html>
